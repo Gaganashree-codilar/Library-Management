@@ -36,10 +36,10 @@
                 <label>Book Name</label>
                 <input type = "text" name = "bookname">
             </div><br>
-            <div>
+           <!-- <div>
                 <label>Author</label>
                 <input type = "text" name = "author">
-            </div><br>
+            </div><br>-->
             <div>       
                 <label>Published Date</label>
                 <input type = "text" name = "publishdate">

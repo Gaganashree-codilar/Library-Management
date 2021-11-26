@@ -1,4 +1,5 @@
 <?php
+ require_once __DIR__ .('/sessionCheck.php');
  ini_set('display_errors', true);
   require_once __DIR__ . '/dbconnection.php';
 
@@ -20,7 +21,7 @@
           $this->conn=$connection->connect();
           $this->id = $data['id'];
           $this->bookname = $data['bookname'];
-          $this->author = $data['author'];
+          $this->author = $_SESSION['email'];
           $this->publishdate = $data['publishdate'];
           $this->bookimage = $data['bookimage'];
           $sql=$this->conn->prepare("INSERT INTO MYBOOK VALUES ('$this->id','$this->bookname','$this->author','$this->publishdate','$this->bookimage')");
@@ -30,7 +31,7 @@
       
 
     }
-
-  
-  $storedata = new storedata();
-  $storedata->insertion();
+    
+    $storedata = new storedata();
+    $storedata->insertion();
+    //session_destroy();

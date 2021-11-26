@@ -1,3 +1,4 @@
+<?php  require_once __DIR__ .('/sessionCheck.php'); ?>
 <html>
     <head>
         <title>Library Management system</title>
@@ -43,10 +44,14 @@ input[type=text]{
 
     </style>
     <body class="body">
+       
         <center><h1>Library management System</h1></center>
         <form class ="form" action="pininsert.php" method="GET">
             <center><button class="button">Add Book</button></center><br>
-        </form>
+        </form><br>
+        <form action="logout.php" method="Post">
+<center><button class= "button" value="logout" name="logout">Logout</button></center>
+</form>
         <div>
             <table>
                 <tr>
@@ -58,10 +63,13 @@ input[type=text]{
                 </tr>
 
                 <?php
+               
+                ini_set('display_errors', true);
+                
                 require_once __DIR__ . '/dbconnection.php';
                 $connection = new dbConnection();                                   
                 $conn=$connection->connect();
-                $query = $conn->prepare("SELECT * FROM MYBOOK");//create table first
+                $query = $conn->prepare("SELECT * FROM MYBOOK Where author='$_SESSION[email]'");
                 $query->execute();
                 $row = $query->fetchAll();
                 foreach($row as $rowdata)
